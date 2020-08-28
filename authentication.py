@@ -87,43 +87,46 @@ try:
 
             if user_password == user_password_confirmation:
                 if len(user_password) >= 8:
-                    valid_username_check = True
-                    used_username = []
-                    
-                    for i in range(showOpenUsernameListLength):
-                        showOpenUsernameList[i] = showOpenUsernameList[i].strip()
-                        used_username.append(showOpenUsernameList[i])
+                    if user_password.find('_') == -1:
+                        valid_username_check = True
+                        used_username = []
                         
-                    for i in range(len(used_username)):
-                        used_username[i] = used_username[i].split('_')
-                        if used_username[i][1] == user_username:
-                            valid_username_check = False
-                        else:
-                            valid_username_check = valid_username_check
+                        for i in range(showOpenUsernameListLength):
+                            showOpenUsernameList[i] = showOpenUsernameList[i].strip()
+                            used_username.append(showOpenUsernameList[i])
+                            
+                        for i in range(len(used_username)):
+                            used_username[i] = used_username[i].split('_')
+                            if used_username[i][1] == user_username:
+                                valid_username_check = False
+                            else:
+                                valid_username_check = valid_username_check
 
-                    if valid_username_check == True:
-                        usernameFile = open('username.txt', 'a')
-                        passwordFile = open('password.txt', 'a')
-                                    
-                        usernameCounter = showOpenUsernameListLength + 1
-                        if usernameCounter <= 0:
-                            usernameFile.write(str(usernameCounter) + '_' + user_username)
-                        else:
-                            usernameFile.write(str(usernameCounter) + '_' + user_username + '\n')
-                            usernameFile.close()
+                        if valid_username_check == True:
+                            usernameFile = open('username.txt', 'a')
+                            passwordFile = open('password.txt', 'a')
+                                        
+                            usernameCounter = showOpenUsernameListLength + 1
+                            if usernameCounter <= 0:
+                                usernameFile.write(str(usernameCounter) + '_' + user_username)
+                            else:
+                                usernameFile.write(str(usernameCounter) + '_' + user_username + '\n')
+                                usernameFile.close()
 
-                        passwordCounter = showOpenPasswordListLength + 1
-                        if passwordCounter <= 0:
-                            passwordFile.write(str(passwordCounter) + '_' + user_password)
-                        else:
-                            passwordFile.write(str(passwordCounter) + '_' + user_password + '\n')
-                            passwordFile.close()
+                            passwordCounter = showOpenPasswordListLength + 1
+                            if passwordCounter <= 0:
+                                passwordFile.write(str(passwordCounter) + '_' + user_password)
+                            else:
+                                passwordFile.write(str(passwordCounter) + '_' + user_password + '\n')
+                                passwordFile.close()
 
-                        print()
-                        print('Account has been created!')
-                        regis_loop = False
+                            print()
+                            print('Account has been created!')
+                            regis_loop = False
+                        else:
+                            print('Account has been used before!')
                     else:
-                        print('Account has been used before!')
+                        print('Password may not contains underscore(_)!')
                 else:
                     print('Password should be at least 8 characters!')
             else:
