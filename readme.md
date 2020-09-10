@@ -1,5 +1,5 @@
 ## Project Overview
-**python-authentication** is a authentication project created with python, that user can create a new account and login to main page and logout back. This project is created using file I/O and for educational purpose.
+**python-authentication** is an authentication project created with python, that user can create a new account and login to main page and logout back. This project is created using file I/O and for educational purpose.
 
 ## Project Features
 1. Create Account
